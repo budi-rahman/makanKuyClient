@@ -14,7 +14,49 @@
   object-fit: cover;
 }
 
+#navbar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  border-top: 0;
+}
 
+#buttonSearch {
+  margin-left: 45%;
+}
+
+#selector {
+  display: flex;
+}
+
+#cuisines {
+ margin-left: 130px;
+}
+
+#cuisines-select {
+  width: 200px;
+  border-radius: 5px;
+}
+
+#establisments {
+  margin-left: 200px;
+}
+
+#establisments-select {
+  width: 200px;
+  border-radius: 5px;
+}
+
+#sort {
+  margin-left: 200px;
+}
+
+#sort-select {
+  width: 200px;
+  border-radius: 5px;
+}
 
 #login {
     margin-top: 10%;
@@ -59,7 +101,14 @@ h2 {
   text-align: center;
 }
 
-#formFooter {
+#formFooter-login {
+  color: white;
+  padding: 25px;
+  text-align: center;
+
+}
+
+#formFooter-register {
   color: white;
   padding: 25px;
   text-align: center;
