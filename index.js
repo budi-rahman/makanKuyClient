@@ -239,7 +239,25 @@ function fetchDataRestaurant(){
     
 }
 
+function onSignIn(googleUser) {
 
+    let id_token = googleUser.getAuthResponse().id_token;
+    console.log('>>> id_token google : ', id_token)
+    $.ajax({
+        method: 'POST',
+        url: `http://localhost:3000/user/loginGoogle`,
+        data: { id_token }
+    })
+        .done(response => {
+            console.log(response)
+            localStorage.setItem('access_token', response.access_token)
+            mainPage ()
+        })
+        .fail((xhr, status) => {
+            console.log(status)
+        })
+
+}
 
 
 $(document).ready(function(){
@@ -255,6 +273,10 @@ $(document).ready(function(){
     $("#logout-btn").click(function(e){
         e.preventDefault();
         localStorage.clear()
+        let auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
         loginPage()
     });
     $("#form-login").on("submit", function(e){
@@ -284,15 +306,6 @@ function loginPage () {
     $("#formFooter-register").hide();
     $("#register-sign").hide();
 }
-
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  }
-  
 
 function registerPage () {
     $("#login").show();
